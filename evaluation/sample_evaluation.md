@@ -1,0 +1,484 @@
+# Sample Evaluation Report
+
+- Total Samples: 25
+- Exact Matches: 0
+- Total Mismatches: 25
+
+## Field-Level Accuracy
+- **amount_safe_to_pay**: 12.0% (3/25)
+- **affordability_status**: 36.0% (9/25)
+- **recommended_payment_method**: 64.0% (16/25)
+- **payment_plan**: 48.0% (12/25)
+- **earliest_date_for_full_payment**: 12.0% (3/25)
+- **spending_changes_needed**: 80.0% (20/25)
+- **decision_explanation**: 0.0% (0/25)
+
+## Mismatches by Field
+
+### amount_safe_to_pay
+- **request_01**
+  - Expected: `25256`
+  - Actual: `6704.95`
+  - Reason: TODO
+- **request_02**
+  - Expected: `17229139.2`
+  - Actual: `18431932.26`
+  - Reason: TODO
+- **request_03**
+  - Expected: `873000`
+  - Actual: `1280583.53`
+  - Reason: TODO
+- **request_04**
+  - Expected: `8401800`
+  - Actual: `11640196.69`
+  - Reason: TODO
+- **request_05**
+  - Expected: `737`
+  - Actual: `15488`
+  - Reason: TODO
+- **request_06**
+  - Expected: `603.3`
+  - Actual: `620.4`
+  - Reason: TODO
+- **request_07**
+  - Expected: `87170.56`
+  - Actual: `101903.15`
+  - Reason: TODO
+- **request_08**
+  - Expected: `284.57`
+  - Actual: `0`
+  - Reason: TODO
+- **request_10**
+  - Expected: `12700`
+  - Actual: `173920.94`
+  - Reason: TODO
+- **request_11**
+  - Expected: `12510645`
+  - Actual: `13110000`
+  - Reason: TODO
+- **request_13**
+  - Expected: `433.4`
+  - Actual: `941.6`
+  - Reason: TODO
+- **request_14**
+  - Expected: `597.74`
+  - Actual: `0`
+  - Reason: TODO
+- **request_15**
+  - Expected: `83.05`
+  - Actual: `0`
+  - Reason: TODO
+- **request_17**
+  - Expected: `243849.58`
+  - Actual: `274600`
+  - Reason: TODO
+- **request_18**
+  - Expected: `462`
+  - Actual: `660.5`
+  - Reason: TODO
+- **request_19**
+  - Expected: `28820`
+  - Actual: `39660`
+  - Reason: TODO
+- **request_20**
+  - Expected: `5400`
+  - Actual: `24197.51`
+  - Reason: TODO
+- **request_21**
+  - Expected: `1543.35`
+  - Actual: `1574.4`
+  - Reason: TODO
+- **request_22**
+  - Expected: `475.46`
+  - Actual: `511.8`
+  - Reason: TODO
+- **request_23**
+  - Expected: `9152`
+  - Actual: `9296.97`
+  - Reason: TODO
+- **request_24**
+  - Expected: `13420`
+  - Actual: `12557.93`
+  - Reason: TODO
+- **request_25**
+  - Expected: `1425000`
+  - Actual: `3365054.63`
+  - Reason: TODO
+
+### affordability_status
+- **request_01**
+  - Expected: `affordable_now`
+  - Actual: `not_affordable`
+  - Reason: TODO
+- **request_02**
+  - Expected: `affordable_with_plan`
+  - Actual: `affordable_later`
+  - Reason: TODO
+- **request_03**
+  - Expected: `affordable_later`
+  - Actual: `not_affordable`
+  - Reason: TODO
+- **request_05**
+  - Expected: `not_affordable`
+  - Actual: `affordable_now`
+  - Reason: TODO
+- **request_06**
+  - Expected: `affordable_with_plan`
+  - Actual: `affordable_now`
+  - Reason: TODO
+- **request_07**
+  - Expected: `affordable_with_plan`
+  - Actual: `affordable_later`
+  - Reason: TODO
+- **request_08**
+  - Expected: `affordable_later`
+  - Actual: `not_affordable`
+  - Reason: TODO
+- **request_11**
+  - Expected: `affordable_with_plan`
+  - Actual: `affordable_now`
+  - Reason: TODO
+- **request_12**
+  - Expected: `affordable_with_plan`
+  - Actual: `affordable_now`
+  - Reason: TODO
+- **request_13**
+  - Expected: `affordable_later`
+  - Actual: `affordable_now`
+  - Reason: TODO
+- **request_17**
+  - Expected: `affordable_with_plan`
+  - Actual: `affordable_now`
+  - Reason: TODO
+- **request_18**
+  - Expected: `affordable_later`
+  - Actual: `not_affordable`
+  - Reason: TODO
+- **request_19**
+  - Expected: `affordable_with_plan`
+  - Actual: `affordable_now`
+  - Reason: TODO
+- **request_21**
+  - Expected: `affordable_with_plan`
+  - Actual: `affordable_now`
+  - Reason: TODO
+- **request_22**
+  - Expected: `affordable_with_plan`
+  - Actual: `affordable_later`
+  - Reason: TODO
+- **request_23**
+  - Expected: `affordable_later`
+  - Actual: `not_affordable`
+  - Reason: TODO
+
+### recommended_payment_method
+- **request_01**
+  - Expected: `full_payment`
+  - Actual: `not_recommended`
+  - Reason: TODO
+- **request_03**
+  - Expected: `wait`
+  - Actual: `not_recommended`
+  - Reason: TODO
+- **request_04**
+  - Expected: `wait`
+  - Actual: `full_payment`
+  - Reason: TODO
+- **request_05**
+  - Expected: `not_recommended`
+  - Actual: `full_payment`
+  - Reason: TODO
+- **request_08**
+  - Expected: `wait`
+  - Actual: `not_recommended`
+  - Reason: TODO
+- **request_13**
+  - Expected: `wait`
+  - Actual: `full_payment`
+  - Reason: TODO
+- **request_18**
+  - Expected: `wait`
+  - Actual: `not_recommended`
+  - Reason: TODO
+- **request_19**
+  - Expected: `partial_payment`
+  - Actual: `installments`
+  - Reason: TODO
+- **request_23**
+  - Expected: `wait`
+  - Actual: `not_recommended`
+  - Reason: TODO
+
+### payment_plan
+- **request_01**
+  - Expected: `2024-03-03:25256`
+  - Actual: `none`
+  - Reason: TODO
+- **request_03**
+  - Expected: `2019-11-15:5491000`
+  - Actual: `none`
+  - Reason: TODO
+- **request_04**
+  - Expected: `2024-06-15:12693000`
+  - Actual: `2024-06-04:12693000`
+  - Reason: TODO
+- **request_05**
+  - Expected: `none`
+  - Actual: `2025-11-06:15488`
+  - Reason: TODO
+- **request_06**
+  - Expected: `2026-01-03:620.40`
+  - Actual: `2026-01-03:620.4`
+  - Reason: TODO
+- **request_08**
+  - Expected: `2025-04-15:996.60`
+  - Actual: `none`
+  - Reason: TODO
+- **request_12**
+  - Expected: `2026-04-19:22590.19|2026-05-20:22590.19|2026-06-20:22590.19`
+  - Actual: `2026-04-05:65164`
+  - Reason: TODO
+- **request_13**
+  - Expected: `2024-05-15:941.60`
+  - Actual: `2024-03-07:941.6`
+  - Reason: TODO
+- **request_17**
+  - Expected: `2026-03-01:95194.67|2026-03-31:95194.67|2026-04-30:95194.67`
+  - Actual: `2026-03-01:274600`
+  - Reason: TODO
+- **request_18**
+  - Expected: `2026-09-15:3246.10`
+  - Actual: `none`
+  - Reason: TODO
+- **request_19**
+  - Expected: `2024-09-04:28820|2024-09-15:10840`
+  - Actual: `2024-09-04:39660`
+  - Reason: TODO
+- **request_21**
+  - Expected: `2026-04-03:1574.40`
+  - Actual: `2026-04-03:1574.4`
+  - Reason: TODO
+- **request_23**
+  - Expected: `2025-07-15:38016`
+  - Actual: `none`
+  - Reason: TODO
+
+### earliest_date_for_full_payment
+- **request_01**
+  - Expected: `2024-03-03`
+  - Actual: `none`
+  - Reason: TODO
+- **request_02**
+  - Expected: `2025-09-15`
+  - Actual: `2025-09-13`
+  - Reason: TODO
+- **request_03**
+  - Expected: `2019-11-15`
+  - Actual: `2019-10-14`
+  - Reason: TODO
+- **request_04**
+  - Expected: `2024-06-15`
+  - Actual: `2024-06-14`
+  - Reason: TODO
+- **request_05**
+  - Expected: ``
+  - Actual: `2025-11-06`
+  - Reason: TODO
+- **request_06**
+  - Expected: `2026-01-15`
+  - Actual: `2026-01-03`
+  - Reason: TODO
+- **request_07**
+  - Expected: `2024-10-23`
+  - Actual: `2024-10-22`
+  - Reason: TODO
+- **request_08**
+  - Expected: `2025-04-15`
+  - Actual: `none`
+  - Reason: TODO
+- **request_10**
+  - Expected: ``
+  - Actual: `none`
+  - Reason: TODO
+- **request_11**
+  - Expected: `2025-07-15`
+  - Actual: `2025-05-03`
+  - Reason: TODO
+- **request_13**
+  - Expected: `2024-05-15`
+  - Actual: `2024-03-07`
+  - Reason: TODO
+- **request_14**
+  - Expected: ``
+  - Actual: `none`
+  - Reason: TODO
+- **request_15**
+  - Expected: ``
+  - Actual: `none`
+  - Reason: TODO
+- **request_17**
+  - Expected: `2026-03-15`
+  - Actual: `2026-03-01`
+  - Reason: TODO
+- **request_18**
+  - Expected: `2026-09-15`
+  - Actual: `2026-08-14`
+  - Reason: TODO
+- **request_19**
+  - Expected: `2024-09-15`
+  - Actual: `2024-09-04`
+  - Reason: TODO
+- **request_20**
+  - Expected: ``
+  - Actual: `none`
+  - Reason: TODO
+- **request_21**
+  - Expected: `2026-04-15`
+  - Actual: `2026-04-03`
+  - Reason: TODO
+- **request_22**
+  - Expected: `2025-01-15`
+  - Actual: `2024-12-16`
+  - Reason: TODO
+- **request_23**
+  - Expected: `2025-07-15`
+  - Actual: `2025-07-17`
+  - Reason: TODO
+- **request_24**
+  - Expected: ``
+  - Actual: `none`
+  - Reason: TODO
+- **request_25**
+  - Expected: ``
+  - Actual: `2024-05-18`
+  - Reason: TODO
+
+### spending_changes_needed
+- **request_02**
+  - Expected: `none`
+  - Actual: `reduce_to:synthetic_entertainment_1:670700`
+  - Reason: TODO
+- **request_04**
+  - Expected: `none`
+  - Actual: `reduce_to:synthetic_entertainment_1:692550|stop:synthetic_music_subscription_1`
+  - Reason: TODO
+- **request_06**
+  - Expected: `stop:event_476`
+  - Actual: `none`
+  - Reason: TODO
+- **request_11**
+  - Expected: `reduce_to:event_989:665950`
+  - Actual: `none`
+  - Reason: TODO
+- **request_21**
+  - Expected: `stop:event_1815|reduce_to:event_1816:23.50`
+  - Actual: `none`
+  - Reason: TODO
+
+### decision_explanation
+- **request_01**
+  - Expected: `Pay ZAR 25,256 today. This leaves at least ZAR 18,000 available over the next 90 days.`
+  - Actual: `No safe payment plan could be found matching your preferences without violating the minimum balance.`
+  - Reason: TODO
+- **request_02**
+  - Expected: `Use 3 installments of IDR 15,952,906.67, starting 8 August 2025. This leaves at least IDR 29,158,400 available.`
+  - Actual: `Use 3 installments of IDR 15,952,906.67, starting 8 August 2025. This leaves at least IDR 241,460.08 available. This requires 1 spending changes.`
+  - Reason: TODO
+- **request_03**
+  - Expected: `Pay IDR 5,491,000 in full on 15 November 2019. Paying earlier would take the balance below the IDR 2,668,700 minimum.`
+  - Actual: `No safe payment plan could be found matching your preferences without violating the minimum balance.`
+  - Reason: TODO
+- **request_04**
+  - Expected: `Wait until 15 June 2024, then pay IDR 12,693,000 in full. Paying sooner would put the IDR 30,686,600 minimum at risk.`
+  - Actual: `Pay IDR 12,693,000 today. This leaves at least IDR 129,766.69 available over the next 90 days. This requires 2 spending changes.`
+  - Reason: TODO
+- **request_05**
+  - Expected: `Do not make this payment by 12 January 2026. None of the available options keeps the ZAR 13,100 minimum protected.`
+  - Actual: `Pay ZAR 15,488 today. This leaves at least ZAR 14,083.07 available over the next 90 days.`
+  - Reason: TODO
+- **request_06**
+  - Expected: `Stop the family streaming plan, then pay EUR 620.40 today. This leaves at least EUR 800 available.`
+  - Actual: `Pay EUR 620.4 today. This leaves at least EUR 278.38 available over the next 90 days.`
+  - Reason: TODO
+- **request_07**
+  - Expected: `Use 3 installments of INR 68,432, starting 12 September 2024. This leaves at least INR 93,000 available.`
+  - Actual: `Use 3 installments of INR 68,432, starting 12 September 2024. This leaves at least INR 33,471.15 available.`
+  - Reason: TODO
+- **request_08**
+  - Expected: `Pay EUR 996.60 in full on 15 April 2025. Paying earlier would take the balance below the EUR 800 minimum.`
+  - Actual: `No safe payment plan could be found matching your preferences without violating the minimum balance.`
+  - Reason: TODO
+- **request_09**
+  - Expected: `Pay EUR 166.61 today. This keeps the EUR 600 minimum available over the next 90 days.`
+  - Actual: `Pay EUR 166.61 today. This leaves at least EUR 455.35 available over the next 90 days.`
+  - Reason: TODO
+- **request_10**
+  - Expected: `Do not make this payment by 10 February 2025. None of the available options keeps the INR 225,400 minimum protected.`
+  - Actual: `No safe payment plan could be found matching your preferences without violating the minimum balance.`
+  - Reason: TODO
+- **request_11**
+  - Expected: `Reduce the weekend food delivery to IDR 665,950, then pay IDR 13,110,000 today. This leaves at least IDR 34,140,600 available.`
+  - Actual: `Pay IDR 13,110,000 today. This leaves at least IDR 1,344,288.57 available over the next 90 days.`
+  - Reason: TODO
+- **request_12**
+  - Expected: `Use 3 installments of ZAR 22,590.19, starting 19 April 2026. This leaves at least ZAR 43,200 available.`
+  - Actual: `Use 1 installments of ZAR 65,164, starting 5 April 2026. This leaves at least ZAR 28,018.54 available.`
+  - Reason: TODO
+- **request_13**
+  - Expected: `Pay EUR 941.60 in full on 15 May 2024. Paying earlier would take the balance below the EUR 1,300 minimum.`
+  - Actual: `Pay EUR 941.6 today. This leaves at least EUR 342.55 available over the next 90 days.`
+  - Reason: TODO
+- **request_14**
+  - Expected: `Do not proceed with the EUR 5,414.20 request. Although EUR 597.74 is available today, the full amount cannot be completed safely within 90 days.`
+  - Actual: `No safe payment plan could be found matching your preferences without violating the minimum balance.`
+  - Reason: TODO
+- **request_15**
+  - Expected: `Do not make this payment by 1 February 2026. None of the available options keeps the EUR 1,200 minimum protected.`
+  - Actual: `No safe payment plan could be found matching your preferences without violating the minimum balance.`
+  - Reason: TODO
+- **request_16**
+  - Expected: `Pay INR 122,500 today. This leaves at least INR 122,400 available over the next 90 days.`
+  - Actual: `Pay INR 122,500 today. This leaves at least INR 117,470 available over the next 90 days.`
+  - Reason: TODO
+- **request_17**
+  - Expected: `Use 3 installments of INR 95,194.67, starting 1 March 2026. This leaves at least INR 166,100 available.`
+  - Actual: `Use 1 installments of INR 274,600, starting 1 March 2026. This leaves at least INR 3,918.05 available.`
+  - Reason: TODO
+- **request_18**
+  - Expected: `Pay EUR 3,246.10 in full on 15 September 2026. Paying earlier would take the balance below the EUR 1,400 minimum.`
+  - Actual: `No safe payment plan could be found matching your preferences without violating the minimum balance.`
+  - Reason: TODO
+- **request_19**
+  - Expected: `Pay INR 28,820 today and the remaining INR 10,840 on 15 September 2024. This completes the full request and keeps the INR 92,800 minimum protected.`
+  - Actual: `Use 1 installments of INR 39,660, starting 4 September 2024. This leaves at least INR 27,233.34 available.`
+  - Reason: TODO
+- **request_20**
+  - Expected: `Do not make this payment by 22 February 2026. None of the available options keeps the INR 64,500 minimum protected.`
+  - Actual: `No safe payment plan could be found matching your preferences without violating the minimum balance.`
+  - Reason: TODO
+- **request_21**
+  - Expected: `Stop the online backup subscription and reduce the streaming subscription to USD 23.50, then pay USD 1,574.40 today. This leaves at least USD 1,800 available.`
+  - Actual: `Pay USD 1,574.4 today. This leaves at least USD 64.3 available over the next 90 days.`
+  - Reason: TODO
+- **request_22**
+  - Expected: `Use 3 installments of EUR 253.59, starting 8 December 2024. This leaves at least EUR 500 available.`
+  - Actual: `Use 3 installments of EUR 253.59, starting 8 December 2024. This leaves at least EUR 258.21 available.`
+  - Reason: TODO
+- **request_23**
+  - Expected: `Pay ZAR 38,016 in full on 15 July 2025. Paying earlier would take the balance below the ZAR 27,000 minimum.`
+  - Actual: `No safe payment plan could be found matching your preferences without violating the minimum balance.`
+  - Reason: TODO
+- **request_24**
+  - Expected: `Do not proceed with the INR 109,600 request. Although INR 13,420 is available today, the full amount cannot be completed safely within 90 days.`
+  - Actual: `No safe payment plan could be found matching your preferences without violating the minimum balance.`
+  - Reason: TODO
+- **request_25**
+  - Expected: `Do not make this payment by 17 April 2024. None of the available options keeps the IDR 23,379,100 minimum protected.`
+  - Actual: `No safe payment plan could be found matching your preferences without violating the minimum balance.`
+  - Reason: TODO
+
+## Gemini API Usage
+- Provider: Gemini REST API (gemini-3-flash-preview)
+- Input Tokens: 0
+- Output Tokens: 0
+- Total Tokens: 0

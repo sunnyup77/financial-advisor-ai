@@ -32,7 +32,7 @@ EXTRACTED_FACT_SCHEMA = {
 }
 
 class GeminiLLMProvider(LLMProvider):
-    def __init__(self, api_key: Optional[str] = None, model: str = "gemini-3-flash-preview"):
+    def __init__(self, api_key: Optional[str] = None, model: str = "gemini-3.5-flash-lite"):
         self.model = model
         self.api_key = api_key or self._load_api_key_from_env()
         
@@ -121,6 +121,9 @@ class GeminiLLMProvider(LLMProvider):
             except urllib.error.HTTPError as e:
                 err_body = e.read().decode('utf-8')
                 if e.code == 429 and attempt < max_retries - 1:
+                    # Check if it's a daily quota exhaustion
+                    if "GenerateRequestsPerDay" in err_body:
+                        raise RuntimeError(f"Gemini API Daily Quota Exhausted: {err_body}")
                     print(f"429 Rate Limit Hit. Attempt {attempt+1}/{max_retries}. Sleeping {15 * (attempt + 1)}s...")
                     time.sleep(15 * (attempt + 1))
                     continue

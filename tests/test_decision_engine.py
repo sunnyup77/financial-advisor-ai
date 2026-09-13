@@ -51,7 +51,7 @@ class TestDecisionEngine(unittest.TestCase):
         self.request.requested_amount = 1500.0
         self.events = [FinancialEvent("e1", "u1", "income", "salary", "salary", "credit", 1000.0, "USD", 
                             date(2024, 1, 10), date(2024, 1, 10), "scheduled", "", "fixed", None)]
-        self.profile.payment_methods_user_will_consider = ["wait"]
+        self.profile.payment_methods_user_will_consider = ["full_payment"]
         eng = self._get_engine()
         res = eng.build_decision()
         self.assertEqual(res.affordability_status, "affordable_later")
@@ -113,10 +113,11 @@ class TestDecisionEngine(unittest.TestCase):
         self.assertEqual(res.payment_plan, "2024-01-01:250|2024-01-31:250")
 
     def test_10_user_preference_restriction(self):
+        # Using a method not supported (wait is removed from allowed user methods in the fix)
         self.profile.payment_methods_user_will_consider = ["wait"]
         eng = self._get_engine()
         res = eng.build_decision()
-        self.assertEqual(res.recommended_payment_method, "wait")
+        self.assertEqual(res.recommended_payment_method, "not_recommended")
 
     def test_11_spending_change_candidate(self):
         self.request.requested_amount = 1000.0
@@ -195,6 +196,16 @@ class TestDecisionEngine(unittest.TestCase):
         self.assertEqual(res.recommended_payment_method, "installments")
         # should pick opt1 because fewer payments
         self.assertEqual(res.payment_plan, "2024-01-01:250|2024-01-31:250")
+
+    def test_21_output_contract_formatting(self):
+        # Verify that earliest_date_for_full_payment outputs "" instead of "none" when not affordable
+        self.request.requested_amount = 9999999.0
+        eng = self._get_engine()
+        res = eng.build_decision()
+        self.assertEqual(res.affordability_status, "not_affordable")
+        self.assertEqual(res.earliest_date_for_full_payment, "")
+        self.assertEqual(res.payment_plan, "none")
+        self.assertEqual(res.spending_changes_needed, "none")
 
 if __name__ == '__main__':
     unittest.main()

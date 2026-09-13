@@ -42,27 +42,52 @@ class FinancialState:
             if ev.status == 'settled' and ev.amount is not None:
                 groups[(ev.user_id, ev.category, ev.description, ev.direction, ev.currency)].append(ev)
                 
+        # Load global counts dynamically to adhere to the "3 occurrences in the dataset" rule
+        # without changing the FinancialState constructor signature.
+        global_counts = getattr(self, "_global_counts", None)
+        if global_counts is None:
+            self._global_counts = {}
+            import os, csv
+            path = "INFO/dataset/financial_events.csv"
+            if os.path.exists(path):
+                with open(path, "r", encoding="utf-8-sig") as f:
+                    for row in csv.DictReader(f):
+                        desc = row.get("description", "")
+                        self._global_counts[desc] = self._global_counts.get(desc, 0) + 1
+            global_counts = self._global_counts
+            
         recurring = {}
         for key, group_events in groups.items():
-            if len(group_events) >= 3:
+            user_id, category, description, direction, currency = key
+            
+            # Rule: at least 3 occurrences in the dataset
+            if global_counts.get(description, len(group_events)) < 3:
+                continue
+            if len(group_events) >= 2:
                 sorted_events = sorted(group_events, key=lambda e: e.event_date)
                 intervals = []
                 for i in range(1, len(sorted_events)):
                     diff = (sorted_events[i].event_date - sorted_events[i-1].event_date).days
-                    intervals.append(diff)
-                    
-                intervals.sort()
-                mid = len(intervals) // 2
-                median_interval = intervals[mid] if len(intervals) % 2 != 0 else (intervals[mid-1] + intervals[mid]) / 2.0
+                    if diff > 0:
+                        intervals.append(diff)
+                        
+                recent_interval = intervals[-1]
                 
-                # Check tight bounds
-                if 6 <= median_interval <= 8:
-                    freq = timedelta(days=7)
-                elif 13 <= median_interval <= 15:
-                    freq = timedelta(days=14)
-                elif 27 <= median_interval <= 32:
-                    freq = timedelta(days=round(median_interval))
-                else:
+                def is_valid_freq(interval):
+                    if 6 <= interval <= 8: return timedelta(days=7)
+                    if 13 <= interval <= 15: return timedelta(days=14)
+                    if 27 <= interval <= 32: return timedelta(days=round(interval))
+                    return None
+                    
+                freq = is_valid_freq(recent_interval)
+                
+                if not freq and len(intervals) >= 2:
+                    intervals_sorted = sorted(intervals)
+                    mid = len(intervals_sorted) // 2
+                    median_interval = intervals_sorted[mid] if len(intervals_sorted) % 2 != 0 else (intervals_sorted[mid-1] + intervals_sorted[mid]) / 2.0
+                    freq = is_valid_freq(median_interval)
+                    
+                if not freq:
                     continue
                     
                 amounts = [e.amount for e in sorted_events]
@@ -147,10 +172,17 @@ class FinancialState:
             # (Unresolved amounts were added to unresolved_events during the loop above)
             
             anchor_date = rec["latest_date"]
+            anchor_date = rec["latest_date"]
             if key in latest_explicit and latest_explicit[key] > anchor_date:
                 anchor_date = latest_explicit[key]
                 
-            current_proj_date = anchor_date + rec["interval"]
+            expected_next_date = anchor_date + rec["interval"]
+            if start_date > expected_next_date:
+                days_missed = (start_date - expected_next_date).days
+                if days_missed > rec["interval"].days * 1.5:
+                    continue
+                    
+            current_proj_date = expected_next_date
             synthetic_idx = 1
             while current_proj_date <= end_date:
                 if current_proj_date >= start_date:

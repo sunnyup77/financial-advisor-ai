@@ -8,7 +8,7 @@ from code.gemini_provider import GeminiLLMProvider
 from code.llm_extractor import EvidenceExtractor
 from code.pipeline import Pipeline
 
-def evaluate():
+def evaluate(limit: int = 20):
     loader = DataLoader()
     loader.load_all()
     
@@ -33,9 +33,11 @@ def evaluate():
         "decision_explanation"
     ]
     
-    with open(sample_path, 'r', encoding='utf-8') as f:
+    with open(os.path.join("INFO", "dataset", "sample_requests.csv"), "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
-        for row in reader:
+        for i, row in enumerate(reader):
+            if i >= limit:
+                break
             total_samples += 1
             # Parse request
             req = RequestData(
@@ -105,10 +107,14 @@ def evaluate():
                     
         f.write("\n## Gemini API Usage\n")
         usage = provider.get_usage()
-        f.write(f"- Provider: Gemini REST API (gemini-3-flash-preview)\n")
+        f.write(f"- Provider: Gemini REST API (gemini-3.5-flash-lite)\n")
         f.write(f"- Input Tokens: {usage['input_tokens']}\n")
         f.write(f"- Output Tokens: {usage['output_tokens']}\n")
         f.write(f"- Total Tokens: {usage['total_tokens']}\n")
         
 if __name__ == '__main__':
-    evaluate()
+    import argparse
+    parser = argparse.ArgumentParser(description="Evaluate samples against ground truth")
+    parser.add_argument('--limit', type=int, default=20, help="Maximum number of samples to process")
+    args = parser.parse_args()
+    evaluate(limit=args.limit)

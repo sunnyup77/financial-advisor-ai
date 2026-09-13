@@ -107,6 +107,9 @@ class DecisionEngine:
         
         if "full_payment" in allowed_methods:
             candidates.append(CandidatePlan("full_payment", [(req_date, req_amt)]))
+            # Fix 1: wait is a temporal strategy for full_payment, not a payment method itself
+            if self.earliest_date_for_full_payment and self.earliest_date_for_full_payment <= self.request.desired_completion_date:
+                candidates.append(CandidatePlan("wait", [(self.earliest_date_for_full_payment, req_amt)]))
             
         if "partial_payment" in allowed_methods and self.request.allows_partial_payment:
             if 0 < self.amount_safe_to_pay < req_amt:
@@ -114,12 +117,12 @@ class DecisionEngine:
                     rem = req_amt - self.amount_safe_to_pay
                     candidates.append(CandidatePlan("partial_payment", [(req_date, self.amount_safe_to_pay), (self.earliest_date_for_full_payment, rem)]))
                     
-        if "wait" in allowed_methods:
-            if self.earliest_date_for_full_payment and self.earliest_date_for_full_payment <= self.request.desired_completion_date:
-                candidates.append(CandidatePlan("wait", [(self.earliest_date_for_full_payment, req_amt)]))
-                
         if "installments" in allowed_methods:
             for opt in self.options:
+                # Fix 2: reject 1-payment installments if full_payment is not allowed
+                if opt.number_of_payments == 1 and "full_payment" not in allowed_methods:
+                    continue
+                    
                 end_date = opt.first_payment_date
                 if opt.number_of_payments > 1:
                     end_date += timedelta(days=(opt.number_of_payments - 1) * (opt.payment_frequency_days or 0))
@@ -241,7 +244,7 @@ class DecisionEngine:
             affordability_status=status,
             recommended_payment_method=method,
             payment_plan=plan_str,
-            earliest_date_for_full_payment=self.earliest_date_for_full_payment_str or "none",
+            earliest_date_for_full_payment=self.earliest_date_for_full_payment_str or "",
             spending_changes_needed=spend_str,
             decision_explanation=exp
         )
